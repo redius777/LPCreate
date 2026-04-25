@@ -34,7 +34,9 @@ export interface LPTemplate {
   description: string;
   sourceUrl?: string;
   sections: LPSection[];
-  globalStyles: string; // CSS string
+  globalStyles: string;   // CSS including @keyframes, animations, transitions
+  globalScripts: string;  // Standalone JS reproducing all dynamic behavior
+  cdnLinks: string[];     // External CDN URLs needed (e.g. AOS, GSAP)
   createdAt: string;
   updatedAt: string;
 }
@@ -56,6 +58,8 @@ export interface AnalyzeRequest {
 export interface AnalyzeResponse {
   sections: LPSection[];
   globalStyles: string;
+  globalScripts: string;
+  cdnLinks: string[];
   suggestedName: string;
   description: string;
 }

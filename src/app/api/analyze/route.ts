@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { analyzeLpFromHtml, analyzeLpFromImage, fetchUrlHtml } from '@/lib/lp-analyzer';
+import { analyzeLpFromHtml, analyzeLpFromImage, analyzeLpFromUrl } from '@/lib/lp-analyzer';
 
 export const maxDuration = 120;
 
@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
   try {
     const contentType = req.headers.get('content-type') || '';
 
-    // Handle multipart form data (image upload)
+    // ── Image upload ──────────────────────────────────────────────────────────
     if (contentType.includes('multipart/form-data')) {
       const formData = await req.formData();
       const file = formData.get('file') as File | null;
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(result);
     }
 
-    // Handle JSON body (URL or raw HTML)
+    // ── JSON body (URL or raw HTML) ───────────────────────────────────────────
     const body = await req.json();
     const { url, html } = body as { url?: string; html?: string };
 
@@ -44,12 +44,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    let sourceHtml = html;
+    // URL: screenshot + source code の両方を使って解析
     if (url) {
-      sourceHtml = await fetchUrlHtml(url);
+      const result = await analyzeLpFromUrl(url);
+      return NextResponse.json(result);
     }
 
-    const result = await analyzeLpFromHtml(sourceHtml!);
+    // HTML paste: ソースコードのみで解析
+    const result = await analyzeLpFromHtml(html!);
     return NextResponse.json(result);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Unknown error';

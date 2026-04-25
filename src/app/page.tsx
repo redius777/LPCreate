@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import LpUploader from '@/components/LpUploader';
 import { AnalyzeResponse, LPTemplate } from '@/types/lp';
-import { v4 as uuidv4 } from 'uuid';
 import SectionBadge from '@/components/SectionBadge';
 
 export default function HomePage() {
@@ -27,6 +26,8 @@ export default function HomePage() {
         description: analyzed.description,
         sections: analyzed.sections,
         globalStyles: analyzed.globalStyles,
+        globalScripts: analyzed.globalScripts,
+        cdnLinks: analyzed.cdnLinks,
       };
       const res = await fetch('/api/templates', {
         method: 'POST',

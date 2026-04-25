@@ -4,14 +4,14 @@ import { LPTemplate } from '@/types/lp';
 import { v4 as uuidv4 } from 'uuid';
 
 export async function GET() {
-  const templates = getTemplates();
-  return NextResponse.json(templates);
+  return NextResponse.json(getTemplates());
 }
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, description, sections, globalStyles, sourceUrl } = body as Partial<LPTemplate>;
+    const { name, description, sections, globalStyles, globalScripts, cdnLinks, sourceUrl } =
+      body as Partial<LPTemplate>;
 
     if (!name || !sections) {
       return NextResponse.json({ error: 'name と sections は必須です' }, { status: 400 });
@@ -24,6 +24,8 @@ export async function POST(req: NextRequest) {
       description: description || '',
       sections,
       globalStyles: globalStyles || '',
+      globalScripts: globalScripts || '',
+      cdnLinks: cdnLinks || [],
       sourceUrl,
       createdAt: now,
       updatedAt: now,

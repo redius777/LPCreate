@@ -24,7 +24,9 @@ export default function LpPreview({ html }: Props) {
       ref={iframeRef}
       title="LP Preview"
       className="w-full h-full border-0"
-      sandbox="allow-same-origin"
+      // allow-scripts enables JS (animations, carousels, etc.)
+      // allow-same-origin allows document.write
+      sandbox="allow-same-origin allow-scripts allow-forms"
     />
   );
 }
