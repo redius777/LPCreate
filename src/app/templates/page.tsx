@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getTemplates } from '@/lib/storage';
 import SectionBadge from '@/components/SectionBadge';
+import DeleteButton from './DeleteButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -59,6 +60,19 @@ export default async function TemplatesPage() {
                 )}
               </div>
 
+              <div className="flex gap-1.5 mt-2">
+                {t.cdnLinks?.length > 0 && (
+                  <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">
+                    CDN {t.cdnLinks.length}件
+                  </span>
+                )}
+                {t.globalScripts && (
+                  <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
+                    JS あり
+                  </span>
+                )}
+              </div>
+
               <p className="text-xs text-gray-400 mt-3">
                 {new Date(t.createdAt).toLocaleDateString('ja-JP')} 作成
                 {' · '}
@@ -79,27 +93,5 @@ export default async function TemplatesPage() {
         </div>
       )}
     </div>
-  );
-}
-
-function DeleteButton({ templateId }: { templateId: string }) {
-  return (
-    <form
-      action={async () => {
-        'use server';
-        const { deleteTemplate } = await import('@/lib/storage');
-        deleteTemplate(templateId);
-      }}
-    >
-      <button
-        type="submit"
-        className="px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-500 hover:text-red-600 hover:border-red-200 transition-colors"
-        onClick={(e) => {
-          if (!confirm('このテンプレートを削除しますか？')) e.preventDefault();
-        }}
-      >
-        削除
-      </button>
-    </form>
   );
 }

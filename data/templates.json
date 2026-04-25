@@ -1,0 +1,132 @@
+[
+  {
+    "id": "66918328-4d52-4f76-8a67-2ba61ce940cf",
+    "name": "サンプルLPテンプレート",
+    "description": "デモ用のサンプルテンプレート",
+    "sections": [
+      {
+        "id": "sec-hero",
+        "type": "hero",
+        "label": "ヒーローセクション",
+        "description": "メインビジュアルとキャッチコピー",
+        "fields": [
+          {
+            "key": "headline",
+            "label": "キャッチコピー",
+            "type": "text",
+            "placeholder": "売上を3倍にするLP制作ツール",
+            "value": "売上を3倍にする\nLP制作ツール"
+          },
+          {
+            "key": "subtext",
+            "label": "サブテキスト",
+            "type": "textarea",
+            "placeholder": "説明文...",
+            "value": "AIが既存のLPを解析して、高品質なテンプレートを自動生成します。"
+          },
+          {
+            "key": "cta_text",
+            "label": "CTAボタンテキスト",
+            "type": "text",
+            "placeholder": "無料で始める",
+            "value": "無料で始める"
+          }
+        ],
+        "htmlTemplate": "<section class=\"hero\"><h1>{{headline}}</h1><p>{{subtext}}</p><a href=\"#\" class=\"btn\">{{cta_text}}</a></section>"
+      },
+      {
+        "id": "sec-features",
+        "type": "features",
+        "label": "特徴セクション",
+        "description": "3つの主要機能カード",
+        "fields": [
+          {
+            "key": "title",
+            "label": "セクションタイトル",
+            "type": "text",
+            "placeholder": "選ばれる3つの理由",
+            "value": "選ばれる3つの理由"
+          },
+          {
+            "key": "feat1_title",
+            "label": "機能1タイトル",
+            "type": "text",
+            "placeholder": "機能1",
+            "value": "AI解析"
+          },
+          {
+            "key": "feat1_desc",
+            "label": "機能1説明",
+            "type": "text",
+            "placeholder": "説明...",
+            "value": "Claude AIがLPを自動分析"
+          },
+          {
+            "key": "feat2_title",
+            "label": "機能2タイトル",
+            "type": "text",
+            "placeholder": "機能2",
+            "value": "ビジュアル編集"
+          },
+          {
+            "key": "feat2_desc",
+            "label": "機能2説明",
+            "type": "text",
+            "placeholder": "説明...",
+            "value": "フォームを埋めるだけで完成"
+          },
+          {
+            "key": "feat3_title",
+            "label": "機能3タイトル",
+            "type": "text",
+            "placeholder": "機能3",
+            "value": "即HTML出力"
+          },
+          {
+            "key": "feat3_desc",
+            "label": "機能3説明",
+            "type": "text",
+            "placeholder": "説明...",
+            "value": "すぐ使えるHTMLをダウンロード"
+          }
+        ],
+        "htmlTemplate": "<section class=\"features\"><h2>{{title}}</h2><div class=\"cards\"><div class=\"card\"><h3>{{feat1_title}}</h3><p>{{feat1_desc}}</p></div><div class=\"card\"><h3>{{feat2_title}}</h3><p>{{feat2_desc}}</p></div><div class=\"card\"><h3>{{feat3_title}}</h3><p>{{feat3_desc}}</p></div></div></section>"
+      },
+      {
+        "id": "sec-cta",
+        "type": "cta",
+        "label": "CTAセクション",
+        "description": "最終コンバージョンボタン",
+        "fields": [
+          {
+            "key": "title",
+            "label": "タイトル",
+            "type": "text",
+            "placeholder": "今すぐ始めましょう",
+            "value": "今すぐ始めましょう"
+          },
+          {
+            "key": "desc",
+            "label": "説明",
+            "type": "text",
+            "placeholder": "説明...",
+            "value": "登録無料・クレジットカード不要"
+          },
+          {
+            "key": "btn",
+            "label": "ボタンテキスト",
+            "type": "text",
+            "placeholder": "無料登録",
+            "value": "無料登録する"
+          }
+        ],
+        "htmlTemplate": "<section class=\"cta\"><h2>{{title}}</h2><p>{{desc}}</p><a href=\"#\" class=\"btn\">{{btn}}</a></section>"
+      }
+    ],
+    "globalStyles": "body{margin:0;font-family:sans-serif;} .hero{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:80px 40px;text-align:center;} .hero h1{font-size:48px;margin-bottom:16px;} .hero p{font-size:20px;opacity:.85;margin-bottom:32px;} .btn{background:#fff;color:#667eea;padding:14px 36px;border-radius:50px;font-weight:700;font-size:16px;text-decoration:none;display:inline-block;} .features{padding:80px 40px;background:#f9fafb;text-align:center;} .features h2{font-size:36px;margin-bottom:48px;} .cards{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;} .card{background:#fff;border-radius:16px;padding:32px;width:260px;box-shadow:0 4px 24px rgba(0,0,0,.08);} .card h3{font-size:20px;margin-bottom:8px;} .card p{color:#6b7280;} .cta{background:#667eea;color:#fff;padding:80px 40px;text-align:center;} .cta h2{font-size:36px;margin-bottom:16px;} .cta p{font-size:18px;opacity:.85;margin-bottom:32px;} .cta .btn{background:#fff;color:#667eea;}",
+    "globalScripts": "document.addEventListener(\"DOMContentLoaded\",function(){const els=document.querySelectorAll(\".card\");const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity=\"1\";e.target.style.transform=\"translateY(0)\";}});},{threshold:0.1});els.forEach(el=>{el.style.opacity=\"0\";el.style.transform=\"translateY(30px)\";el.style.transition=\"all 0.6s ease\";obs.observe(el);});});",
+    "cdnLinks": [],
+    "createdAt": "2026-04-25T23:20:35.169Z",
+    "updatedAt": "2026-04-25T23:20:35.169Z"
+  }
+]
